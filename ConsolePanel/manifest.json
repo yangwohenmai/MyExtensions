@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "杨宗宪插件测试",
+    "version": "0.5",
+    "description": "杨宗宪插件测试",
+    "icons": {
+        "16": "icons/1c.png",
+        "32": "icons/1c.png",
+        "48": "icons/1c.png",
+        "64": "icons/1c.png",
+        "128": "icons/1c.png"
+    },
+    "action": {
+        //"default_popup": "popup/popup.html"
+        //"default_popup": "index_complex.html"
+        //"default_popup": "index_card.html"
+        "default_popup": "index_brief.html"
+        //"default_popup": "index_default.html"
+    }
+}
+
+// manifest_version 清单文件版本为固定的3，老版本为2
+// name 插件名称
+// version 插件版本
+// description 插件描述信息
+// icons 浏览器会自动调整选择合适大小的图标
+// action.default_popup 启动扩展时加载的文件
+
+// 更多配置请查看微软官方文档
