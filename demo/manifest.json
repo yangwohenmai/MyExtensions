@@ -3,7 +3,6 @@
     "name": "插件测试",
     "version": "1.0",
     "description": "插件测试description",
-    //"content_security_policy": "script-src 'self' https://localhost; object-src 'self'",
     "icons": {
       "16": "icons/logo16x16.png",
       "32": "icons/logo32x32.png",

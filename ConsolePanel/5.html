@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+ 
+      body {
+        background-color: rgb(239, 239, 235);
+      }
+ 
+      #box {
+        width: 400px;
+        height: 300px;
+        margin: 150px auto;
+        position: relative;
+      }
+ 
+      #box>li {
+        list-style: none;
+        font-weight: bold;
+        float: left;
+        width: 100px;
+        text-align: center;
+        line-height: 50px;
+        color: #000000;
+      }
+ 
+      #box>li {
+        background-color: rgb(170, 0, 0);
+        width: 100px;
+        height: 50px;
+        color: whitesmoke;
+      }
+ 
+      #box>li:hover {
+        background-color: #550000;
+      }
+ 
+      #box1 {
+        box-sizing: border-box;
+        padding: 20px 50px;
+        width: 400px;
+        height: 250px;
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        margin-top: 50px;
+      }
+ 
+      #box1>ul>li {
+        line-height: 50px;
+      }
+ 
+      #box2 {
+        box-sizing: border-box;
+        padding: 20px 50px;
+        width: 400px;
+        height: 250px;
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        margin-top: 50px;
+      }
+ 
+      #box2>ul>li {
+        line-height: 50px;
+      }
+ 
+      #box3 {
+        box-sizing: border-box;
+        padding: 20px 50px;
+        width: 400px;
+        height: 250px;
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        margin-top: 50px;
+      }
+ 
+      #box3>ul>li {
+        line-height: 50px;
+      }
+ 
+      #box4 {
+        box-sizing: border-box;
+        padding: 20px 50px;
+        width: 400px;
+        height: 250px;
+        background-color: rgb(255, 255, 255);
+        position: absolute;
+        margin-top: 50px;
+      }
+ 
+      #box4>ul>li {
+        line-height: 50px;
+      }
+ 
+      #box li:nth-child(1):hover~#menu1 div:nth-child(1),
+      #box li:nth-child(2):hover~#menu1 div:nth-child(2),
+      #box li:nth-child(3):hover~#menu1 div:nth-child(3),
+      #box li:nth-child(4):hover~#menu1 div:nth-child(4) {
+        z-index: 5;
+      }
+      
+      #box1 {
+        z-index: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <li>新闻</li>
+      <li>娱乐</li>
+      <li>游戏</li>
+      <li>教育</li>
+      <div id="menu1">
+        <div id="box1">
+          <ul>
+            <li>市民健康跑 迎接成都大运会</li>
+            <li>中国经济圆桌会｜年中经济面面观</li>
+            <li>上古时期的湖南何其光辉灿烂</li>
+            <li>读懂中国经济的“含金量”</li>
+          </ul>
+        </div>
+        <div id="box2">
+          <ul>
+            <li>采山货遇300多斤野猪袭击</li>
+            <li>虹桥站每天捡1袋子耳机</li>
+            <li>初代iPhone被拍出113万</li>
+            <li>2023首个登陆我国的台风“泰利”</li>
+          </ul>
+        </div>
+        <div id="box3">
+          <ul>
+            <li>使命召唤20：现代战争3确定发布时间</li>
+            <li>《战地6》预告片完整版泄露</li>
+            <li>官宣深岩银河计划出桌游扩展包</li>
+            <li>《战神 6》™ | 索尼的开放世界游戏</li>
+          </ul>
+        </div>
+        <div id="box4">
+          <ul>
+            <li>2023届高校毕业生就业“百日冲刺”行动</li>
+            <li>以高质量巡视监督护航教育强国建设</li>
+            <li>教育部举行年中推进会</li>
+            <li>全国高校科技创新成果奖表彰大会召开</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

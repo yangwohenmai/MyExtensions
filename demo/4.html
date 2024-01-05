@@ -1,0 +1,57 @@
+<html>
+  <head>
+    
+  </head>
+  
+  <section>
+    <nav>
+      <ul>
+        <li><a href="#tab1">选项卡一</a></li>
+        <li><a href="#tab2">选项卡二</a></li>
+      </ul>
+    </nav>
+    <div id="tab1">
+      <p>这是选项卡一的内容区域。</p>
+    </div>
+    <div id="tab2">
+      <p>这是选项卡二的内容区域。</p>
+    </div>
+  </section>
+</html>
+
+
+
+<style type="text/css">
+  nav ul {
+  display: flex;
+}
+
+nav li {
+  margin-right: 10px;
+}
+
+nav li:last-child {
+  margin-right: 0;
+}
+
+nav a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+nav a:hover, nav a.active {
+  background-color: #ddd;
+}
+
+section div {
+  display: none;
+}
+
+section div.active {
+  display: block;
+}
+</style>
+
+<script  type ="text/javascript" src="layui/index_brief_4.js"></script>
