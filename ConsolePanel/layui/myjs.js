@@ -17,6 +17,8 @@ if (tk) {
         alert(str);
         str = aa("test1");
         alert(str);
+        //$ = layui.$;
+        //$("#thisp").html("")
     };
 }
 
@@ -25,8 +27,8 @@ function aa(input)
   aar = "11";
     $ = layui.$;
     $.ajax({
-        //url: 'https://localhost:44396/MyExtension/GetJsonData',//后端数据接口
-        url: 'http://101.133.226.60:5000/MyExtension/GetJsonData',//后端数据接口
+        url: 'https://localhost:44396/MyExtension/GetJsonData',//后端数据接口
+        //url: 'http://101.133.226.60:5000/MyExtension/GetJsonData',//后端数据接口
         type: 'GET',//请求类型
         dataType: 'json',//返回数据类型
         async: false,
@@ -36,6 +38,9 @@ function aa(input)
             alert(res.msg);
             var b = res;
           aar = input + ":" + res.msg;
+          var iframeElement = document.getElementById("myiframe");
+          var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
+          iframeDoc.getElementById("thisp").innerHTML = res.stockBasicInfo[0]["open"];
           //return aa;
         }
     });
