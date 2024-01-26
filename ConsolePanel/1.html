@@ -11,9 +11,32 @@
 </head>
 <body>
 <!--<table class="layui-hide" id="ID-table-demo-setRowChecked"></table>-->
-<p id="thisp">ppp</p>
+<p id="thisp">行情数据</p>
+  <table class="layui-table">
+    <colgroup>
+      <col width="150">
+      <col width="150">
+      <col width="250">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>close</th>
+        <th>chg</th>
+      </tr> 
+    </thead>
+    <tbody id="thistable">
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+<div id="thisdiv"></div>
   <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+    <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>-->
   </div>
   
 
