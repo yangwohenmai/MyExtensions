@@ -1,67 +1,184 @@
-layui.use('table', function(){
-  var table = layui.table;
-  
-  // 渲染
-  table.render({
-    elem: '#ID-table-demo-setRowChecked',
-    url: 'https://localhost:44396/MyExtension/GetJsonData', // 此处为静态模拟数据，实际使用时需换成真实接口
-    page: true, 
-    limits: [5, 10, 20, 30, 50]
-            , method: 'get'//默认get
-            , title: '房价列表',
-    cols: [[
-      // {type: 'radio', fixed: 'left'},
-      {field:'id', title:'ID', width:80, fixed: 'left', unresize: true}//,
-      //{field:'username', title:'用户', width:120},
-      //{field:'sex', title:'性别', width:80},
-      //{field:'city', title:'城市', width:100},
-      //{field:'sign', title:'签名'},
-      //{field:'experience', title:'积分', width:80, sort: true}
-    ]]
-    , done: function (res) {
-                //获取数据完成后执行的区域，如提示获取完成等
-                //如果是异步请求数据方式，res即为你接口返回的信息。
-                //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
-      i = 1
-            }
-            , request: {
-                //原值为：?page=1&limit=30
-                //修改后分页请求参数为：?curr=1&nums=30
-                //pageName: 'curr' //页码的参数名称，默认为：page
-                //, limitName: 'nums' //每页数据量的参数名，默认为：limit
-            },
-
-    toolbar: '#demo-toolbar-setRowChecked',
-    initSort: { // 设置初始排序
-      field: 'experience', // 字段名
-      type: 'desc' // 倒序
-    },
-    height: 366
-  });
-  //ajax重新加载表格,内部调用法
-        table.reload('ID-table-demo-setRowChecked');
-  // 行单击事件( 双击事件为: rowDouble )
-  table.on('row(ID-table-demo-setRowChecked)', function(obj){
-    var data = obj.data; // 获取当前行数据
-    
-    // 显示 - 仅用于演示
-    layer.msg('当前行数据：<br>'+ JSON.stringify(data), {
-      offset: '65px'
-    });
-    // 标注当前点击行的选中状态
-    obj.setRowChecked({
-      type: 'radio' // radio 单选模式；checkbox 复选模式
-    });
-  });
-  // 头工具栏事件
-  table.on('toolbar(ID-table-demo-setRowChecked)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id); //获取选中行状态
-    switch(obj.event){
-      case 'getCheckData':
-        var data = checkStatus.data;  // 获取选中行数据
-        layer.alert(JSON.stringify(data));  // 显示 - 仅用于演示
-      break;
+//注册sendMessageId按钮点击事件
+const sendMessageId = document.getElementById("sendmessageid");
+if (sendMessageId) {
+  sendMessageId.onclick = function() {
+    alert("123");
+    str = aa("test");
+    alert(str);
+    str = aa("test1");
+    alert(str);
     };
+}
+
+//注册tk按钮点击事件
+const tk = document.getElementById("tk");
+if (tk) {
+  tk.onclick = function() {
+    //alert("123");
+    result = aa("test");
+    var iframeElement = document.getElementById("myiframe");
+    var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
+    str1 = result.stockBasicInfo[0]["date"];
+    iframeDoc.getElementById("thisp").innerHTML = str1;
+    //iframeDoc.getElementById("thistable").innerHTML = str1;
+    str2 = ""
+    for(var i = 0; i < result.stockBasicInfo.length; i++)
+    {
+      str2 += "<tr>"+"<td>"+result.stockBasicInfo[i]["display_name"]+"</td><td>"+result.stockBasicInfo[i]["close"]+"</td><td>"+result.stockBasicInfo[i]["pchg"]+"%</td>"+"</tr>"
+    }
+    
+    //str2 = "<tr>"+"<td>"+result.stockBasicInfo[0]["display_name"]+"</td><td>"+result.stockBasicInfo[0]["close"]+"</td><td>"+result.stockBasicInfo[0]["pchg"]+"%</td>"+"</tr>"
+    //      +"<tr>"+"<td>"+result.stockBasicInfo[1]["display_name"]+"</td><td>"+result.stockBasicInfo[1]["close"]+"</td><td>"+result.stockBasicInfo[1]["pchg"]+"%</td>"+"</tr>"
+    
+    iframeDoc.getElementById("thistable").innerHTML = str2;
+    //$ = layui.$;
+    //$("#thistable").html(str2);
+    //iframeDoc.getElementById("thisp").innerHTML = result.stockBasicInfo[0]["open"];
+    //alert("finish");
+    //str = aa("test1");
+    //alert(str);
+    //$ = layui.$;
+    //$("#thisp").html("")
+  };
+}
+
+layui.use(function(){
+  var layer = layui.layer;
+  // 欢迎信息
+  layer.msg('欢迎来到80年代', {icon: 6});
+
+  var laydate = layui.laydate;
+    // 日期
+    laydate.render({
+      elem: '#test2',
+      value: new Date(),
+      isInitValue: true
+    });
+  /*
+   *模块1
+   */
+  var form = layui.form;
+  var util = layui.util;
+  // 注册按钮的触发事件
+  util.on('test-active', {
+    'test-form': function(){
+      layer.open({
+        type: 1,
+        resize: false,
+        shadeClose: true,
+        area: '350px',
+        title: 'layer + form',
+        content: ['<ul class="layui-form layui-form-pane" style="margin: 15px;">',
+          '<li class="layui-form-item">',
+            '<label class="layui-form-label">输入框</label>',
+            '<div class="layui-input-block">',
+              '<input class="layui-input" lay-verify="required" name="field1">',
+            '</div>',
+          '</li>',
+          '<li class="layui-form-item">',
+            '<label class="layui-form-label">选择框</label>',
+            '<div class="layui-input-block">',
+              '<select name="field2">',
+                '<option value="A">A</option>',
+                '<option value="B">B</option>',
+              '<select>',
+            '</div>',
+          '</li>',
+          '<li class="layui-form-item" style="text-align:center;">',
+            '<button type="submit" lay-submit lay-filter="*" class="layui-btn">提交</button>',
+          '</li>',
+        '</ul>'].join(''),
+        success: function(layero, index){
+          layero.find('.layui-layer-content').css('overflow', 'visible');
+          
+          form.render().on('submit(*)', function(data){
+            var field = data.field;
+            
+            // 显示填写的表单
+            layer.msg(util.escape(JSON.stringify(field)), {
+              icon: 1
+            });
+            // layer.close(index); //关闭层
+          });
+        }
+      });
+    }
   });
+  /*
+   *模块2,简洁版不用
+   */
+  /*
+  var element = layui.element;
+  // 普通事件
+  util.on('lay-on', {
+    tabAdd: function(){
+      // 新增一个 tab 项
+      var label = (Math.random()*1000|0); // 标记 - 用于演示
+      element.tabAdd('test-handle', {
+        title: '新选项'+ label,
+        content: '内容-'+ label,
+        id: new Date().getTime(), // 实际使用一般是规定好的id，这里以毫秒数模拟
+        change: true // 是否添加完毕后即自动切换
+      })
+    },
+    tabDelete: function(othis){
+      // 删除指定 tab 项
+      element.tabDelete('test-handle', '44'); // 删除：“商品管理”
+      othis.addClass('layui-btn-disabled');
+    },
+    tabChange: function(){
+      // 切换到指定 tab 项
+      element.tabChange('test-handle', '33'); // 切换到：标签3
+    }
+  });
+  */
 });
+
+//请求数据
+function aa(input)
+{
+  aar = "";
+  result = "";
+  $ = layui.$;
+  $.ajax({
+      //url: 'https://localhost:44396/MyExtension/GetJsonData',//后端数据接口
+      url: 'http://101.133.226.60:5000/MyExtension/GetJsonData',//后端数据接口
+      type: 'GET',//请求类型
+      dataType: 'json',//返回数据类型
+      async: false,
+      success: function(res) {//回调函数
+        //setTimeout(alert("sleep"),1000);
+        //将数据绑定到表格中
+        //alert(res.msg);
+        aar = input + ":" + res.msg;
+        //var iframeElement = document.getElementById("myiframe");
+        //var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
+        //iframeDoc.getElementById("thisp").innerHTML = res.stockBasicInfo[0]["open"];
+        result = res
+      }
+  });
+  return result;
+}
+
+//页面内容初始化
+function Init()
+{
+  result = aa("test");
+  var iframeElement = document.getElementById("myiframe");
+  var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
+  str1 = result.stockBasicInfo[0]["date"];
+  //iframeDoc.getElementById("thisp").innerHTML = str1;
+  str2 = ""
+  for(var i = 0; i < result.stockBasicInfo.length; i++)
+  {
+    str2 += "<tr>"+"<td>"+result.stockBasicInfo[i]["display_name"]+"</td><td>"+result.stockBasicInfo[i]["close"]+"</td><td>"+result.stockBasicInfo[i]["pchg"]+"%</td><td><a href=\"http://www.baidu.com\">op1</a></td>"+"</tr>"
+  }
+  
+  iframeDoc.getElementById("thistable").innerHTML = str2;
+}
+
+//首次加载
+window.onload = function() {
+  Init();
+}
 

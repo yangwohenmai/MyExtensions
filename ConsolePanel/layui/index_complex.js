@@ -118,12 +118,12 @@ layui.use(function(){
     },
     tabDelete: function(othis){
       // 删除指定 tab 项
-      element.tabDelete('test-handle', '44'); // 删除：“商品管理”
+      element.tabDelete('test-handle', 'tabcard4'); // 删除：“商品管理”
       othis.addClass('layui-btn-disabled');
     },
     tabChange: function(){
       // 切换到指定 tab 项
-      element.tabChange('test-handle', '33'); // 切换到：标签3
+      element.tabChange('test-handle', 'tabcard3'); // 切换到：标签3
     }
   });
 
