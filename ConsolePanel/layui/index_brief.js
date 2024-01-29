@@ -46,7 +46,7 @@ layui.use(function(){
   var layer = layui.layer;
   // 欢迎信息
   layer.msg('欢迎来到80年代', {icon: 6});
-
+  /*
   var laydate = layui.laydate;
     // 日期
     laydate.render({
@@ -54,6 +54,8 @@ layui.use(function(){
       value: new Date(),
       isInitValue: true
     });
+  */
+
   /*
    *模块1
    */
@@ -104,6 +106,7 @@ layui.use(function(){
       });
     }
   });
+  
   /*
    *模块2,简洁版不用
    */
@@ -149,7 +152,6 @@ function aa(input)
       success: function(res) {//回调函数
         //setTimeout(alert("sleep"),1000);
         //将数据绑定到表格中
-        //alert(res.msg);
         aar = input + ":" + res.msg;
         //var iframeElement = document.getElementById("myiframe");
         //var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
