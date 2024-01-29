@@ -8,10 +8,12 @@
   <link rel="stylesheet" href="layui/css/layui.css">
 </head>
 <body>
+
+
 <div class="layui-tab layui-tab-brief">
   <ul class="layui-tab-title">
     <li class="layui-this">标签1</li>
-    <li>标签2</li>
+    <li >标签2</li>
     <li>标签3</li>
     <li>标签4</li>
     <li>标签5</li>
@@ -39,16 +41,21 @@
     </div>
   </div>
 </div>
-<div class="layui-btn-container">
+<!--<div class="layui-btn-container">
   <button class="layui-btn" lay-on="tabAdd">新增 tab 项</button>
   <button class="layui-btn" lay-on="tabDelete">删除「标签4」</button>
   <button class="layui-btn" lay-on="tabChange">切换到「标签3」</button>
+</div>-->
+<div class="layui-btn-container">
   <button id="tk" class="layui-btn" lay-on="tabAlert">tk</button>
+  <button class="layui-btn" test-active="test-form">一个按钮</button>
+  <button class="layui-btn layui-btn-normal" id="test2">当前日期</button>
 </div>
 <button id="sendmessageid">Display</button>
 
+</body>
 
+<!--要在body末尾处引入js-->
 <script src="layui/layui.js"></script>
 <script src="layui/myjs.js"></script>
-</body>
 </html>

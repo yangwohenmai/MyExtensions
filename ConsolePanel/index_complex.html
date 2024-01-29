@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Demo</title>
   <link rel="stylesheet" href="layui/css/layui.css">
-  <script src="layui/layui.js"></script>
-  <script src="layui/index_complex.js"></script>
 </head>
 <body>
+
 <div class="layui-tab" lay-filter="test-handle" lay-allowclose="true">
   <ul class="layui-tab-title">
     <li class="layui-this" lay-id="11">标签1</li>
@@ -18,22 +17,45 @@
     <li lay-id="55">标签5</li>
   </ul>
   <div class="layui-tab-content">
-    <div class="layui-tab-item layui-show">内容-1</div>
-    <div class="layui-tab-item">内容-2</div>
-    <div class="layui-tab-item">内容-3</div>
-    <div class="layui-tab-item">内容-4</div>
-    <div class="layui-tab-item">内容-5</div>
+    <!--标签1-->
+    <div class="layui-tab-item layui-show">
+      <iframe id="myiframe" src="1.html" width="500" frameborder="frameborder_value"></iframe>
+    </div>
+    <!--标签2-->
+    <div class="layui-tab-item">
+      <iframe src="2.html" width="500" height="250" frameborder="frameborder_value"></iframe>
+    </div>
+    <!--标签3-->
+    <div class="layui-tab-item">
+      <iframe src="3.html" width="500" frameborder="frameborder_value"></iframe>
+    </div>
+    <!--标签4-->
+    <div class="layui-tab-item">内容-4
+      <iframe src="4.html" width="500" frameborder="frameborder_value"></iframe>
+    </div>
+    <!--标签5-->
+    <div class="layui-tab-item">内容-5
+      <iframe src="5.html" width="500" frameborder="frameborder_value"></iframe>
+    </div>
   </div>
 </div>
- 
 <div class="layui-btn-container">
   <button class="layui-btn" lay-on="tabAdd">新增 tab 项</button>
   <button class="layui-btn" lay-on="tabDelete">删除「标签4」</button>
   <button class="layui-btn" lay-on="tabChange">切换到「标签3」</button>
+  <button id="tk" class="layui-btn" lay-on="tabAlert">tk</button>
 </div>
-  
+<div class="layui-btn-container">
+    <button class="layui-btn" test-active="test-form">一个按钮</button>
+    <button class="layui-btn layui-btn-normal" id="test2">当前日期</button>
+</div>
+<button id="sendmessageid">Display</button>
 
-
- 
 </body>
+
+<!--要在body末尾处引入js-->
+<script src="layui/layui.js"></script>
+<!--替换myjs  index_complex-->
+<script src="layui/index_complex.js"></script>
+<!--<script src="layui/index_complex.js"></script>-->
 </html>
