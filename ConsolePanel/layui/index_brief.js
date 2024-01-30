@@ -3,9 +3,9 @@ const sendMessageId = document.getElementById("sendmessageid");
 if (sendMessageId) {
   sendMessageId.onclick = function() {
     alert("123");
-    str = aa("test");
+    str = GetBasicData("test");
     alert(str);
-    str = aa("test1");
+    str = GetBasicData("test1");
     alert(str);
     };
 }
@@ -15,7 +15,7 @@ const tk = document.getElementById("tk");
 if (tk) {
   tk.onclick = function() {
     //alert("123");
-    result = aa("test");
+    result = GetBasicData("test");
     var iframeElement = document.getElementById("myiframe");
     var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
     str1 = result.stockBasicInfo[0]["date"];
@@ -24,28 +24,26 @@ if (tk) {
     str2 = ""
     for(var i = 0; i < result.stockBasicInfo.length; i++)
     {
-      str2 += "<tr>"+"<td>"+result.stockBasicInfo[i]["display_name"]+"</td><td>"+result.stockBasicInfo[i]["close"]+"</td><td>"+result.stockBasicInfo[i]["pchg"]+"%</td>"+"</tr>"
+      //str2 += "<tr>"+"<td>"+result.stockBasicInfo[i]["display_name"]+"</td><td>"+result.stockBasicInfo[i]["close"]+"</td><td>"+result.stockBasicInfo[i]["pchg"]+"%</td>"+"</tr>";
+      str2 += "<tr>"+"<td>"+result.stockBasicInfo[i]["display_name"]+"</td><td>"+result.stockBasicInfo[i]["close"]+"</td><td>"+result.stockBasicInfo[i]["pchg"]+"%</td><td>"+result.stockBasicInfo[i]["bljjResult"]+"</td><td><a href=\"http://www.baidu.com\">op1</a></td>"+"</tr>";
     }
-    
-    //str2 = "<tr>"+"<td>"+result.stockBasicInfo[0]["display_name"]+"</td><td>"+result.stockBasicInfo[0]["close"]+"</td><td>"+result.stockBasicInfo[0]["pchg"]+"%</td>"+"</tr>"
-    //      +"<tr>"+"<td>"+result.stockBasicInfo[1]["display_name"]+"</td><td>"+result.stockBasicInfo[1]["close"]+"</td><td>"+result.stockBasicInfo[1]["pchg"]+"%</td>"+"</tr>"
     
     iframeDoc.getElementById("thistable").innerHTML = str2;
     //$ = layui.$;
     //$("#thistable").html(str2);
     //iframeDoc.getElementById("thisp").innerHTML = result.stockBasicInfo[0]["open"];
     //alert("finish");
-    //str = aa("test1");
+    //str = GetBasicData("test1");
     //alert(str);
     //$ = layui.$;
-    //$("#thisp").html("")
+    //$("#thisp").html("");
   };
 }
 
 layui.use(function(){
   var layer = layui.layer;
   // 欢迎信息
-  layer.msg('欢迎来到80年代', {icon: 6});
+  layer.msg('又来赌博', {icon: 6});
   /*
   var laydate = layui.laydate;
     // 日期
@@ -108,39 +106,39 @@ layui.use(function(){
   });
   
   /*
-   *模块2,简洁版不用
+   *模块2,简洁版不用标签切换功能
    */
   /*
-  var element = layui.element;
-  // 普通事件
-  util.on('lay-on', {
-    tabAdd: function(){
-      // 新增一个 tab 项
-      var label = (Math.random()*1000|0); // 标记 - 用于演示
-      element.tabAdd('test-handle', {
-        title: '新选项'+ label,
-        content: '内容-'+ label,
-        id: new Date().getTime(), // 实际使用一般是规定好的id，这里以毫秒数模拟
-        change: true // 是否添加完毕后即自动切换
-      })
-    },
-    tabDelete: function(othis){
-      // 删除指定 tab 项
-      element.tabDelete('test-handle', '44'); // 删除：“商品管理”
-      othis.addClass('layui-btn-disabled');
-    },
-    tabChange: function(){
-      // 切换到指定 tab 项
-      element.tabChange('test-handle', '33'); // 切换到：标签3
-    }
-  });
+    var element = layui.element;
+    // 普通事件
+    util.on('lay-on', {
+      tabAdd: function(){
+        // 新增一个 tab 项
+        var label = (Math.random()*1000|0); // 标记 - 用于演示
+        element.tabAdd('test-handle', {
+          title: '新选项'+ label,
+          content: '内容-'+ label,
+          id: new Date().getTime(), // 实际使用一般是规定好的id，这里以毫秒数模拟
+          change: true // 是否添加完毕后即自动切换
+        })
+      },
+      tabDelete: function(othis){
+        // 删除指定 tab 项
+        element.tabDelete('test-handle', '44'); // 删除：“商品管理”
+        othis.addClass('layui-btn-disabled');
+      },
+      tabChange: function(){
+        // 切换到指定 tab 项
+        element.tabChange('test-handle', '33'); // 切换到：标签3
+      }
+    });
   */
 });
 
 //请求数据
-function aa(input)
+function GetBasicData(input)
 {
-  aar = "";
+  test = "";
   result = "";
   $ = layui.$;
   $.ajax({
@@ -149,10 +147,10 @@ function aa(input)
       type: 'GET',//请求类型
       dataType: 'json',//返回数据类型
       async: false,
-      success: function(res) {//回调函数
+      success: function(res) {
         //setTimeout(alert("sleep"),1000);
         //将数据绑定到表格中
-        aar = input + ":" + res.msg;
+        test = input + ":" + res.msg;
         //var iframeElement = document.getElementById("myiframe");
         //var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
         //iframeDoc.getElementById("thisp").innerHTML = res.stockBasicInfo[0]["open"];
@@ -165,7 +163,7 @@ function aa(input)
 //页面内容初始化
 function Init()
 {
-  result = aa("test");
+  result = GetBasicData("test");
   var iframeElement = document.getElementById("myiframe");
   var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
   str1 = result.stockBasicInfo[0]["date"];
@@ -173,7 +171,7 @@ function Init()
   str2 = ""
   for(var i = 0; i < result.stockBasicInfo.length; i++)
   {
-    str2 += "<tr>"+"<td>"+result.stockBasicInfo[i]["display_name"]+"</td><td>"+result.stockBasicInfo[i]["close"]+"</td><td>"+result.stockBasicInfo[i]["pchg"]+"%</td><td><a href=\"http://www.baidu.com\">op1</a></td>"+"</tr>"
+    str2 += "<tr>"+"<td>"+result.stockBasicInfo[i]["display_name"]+"</td><td>"+result.stockBasicInfo[i]["close"]+"</td><td>"+result.stockBasicInfo[i]["pchg"]+"%</td><td>"+result.stockBasicInfo[i]["bljjResult"]+"</td><td><a href=\"http://www.baidu.com\">op1</a></td>"+"</tr>";
   }
   
   iframeDoc.getElementById("thistable").innerHTML = str2;
