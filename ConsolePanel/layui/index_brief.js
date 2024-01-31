@@ -11,32 +11,20 @@ if (sendMessageId) {
 }
 
 //注册tk按钮点击事件
-const tk = document.getElementById("tk");
-if (tk) {
-  tk.onclick = function() {
-    //alert("123");
+const refresh = document.getElementById("refresh");
+if (refresh) {
+  refresh.onclick = function() {
     result = GetBasicData("test");
     var iframeElement = document.getElementById("myiframe");
     var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
-    str1 = result.stockBasicInfo[0]["date"];
-    iframeDoc.getElementById("thisp").innerHTML = str1;
-    //iframeDoc.getElementById("thistable").innerHTML = str1;
+    iframeDoc.getElementById("thisp").innerHTML = result.stockBasicInfo[0]["date"];
     str2 = ""
     for(var i = 0; i < result.stockBasicInfo.length; i++)
     {
-      //str2 += "<tr>"+"<td>"+result.stockBasicInfo[i]["display_name"]+"</td><td>"+result.stockBasicInfo[i]["close"]+"</td><td>"+result.stockBasicInfo[i]["pchg"]+"%</td>"+"</tr>";
-      str2 += "<tr>"+"<td>"+result.stockBasicInfo[i]["display_name"]+"</td><td>"+result.stockBasicInfo[i]["close"]+"</td><td>"+result.stockBasicInfo[i]["pchg"]+"%</td><td>"+result.stockBasicInfo[i]["bljjResult"]+"</td><td><a href=\"http://www.baidu.com\">op1</a></td>"+"</tr>";
+      color = (result.stockBasicInfo[i]["pchg"].toString().search('-') != -1) ? "style=\"color:blue\"" : "style=\"color:red\"";
+      str2 += `<tr><td>${result.stockBasicInfo[i]["display_name"]}</td><td>${result.stockBasicInfo[i]["close"]}</td><td ${color}>${result.stockBasicInfo[i]["pchg"]}%</td><td>${result.stockBasicInfo[i]["bljjResult"]}</td><td><a href=\"http://www.baidu.com\">op1</a></td></tr>`;
     }
-    
     iframeDoc.getElementById("thistable").innerHTML = str2;
-    //$ = layui.$;
-    //$("#thistable").html(str2);
-    //iframeDoc.getElementById("thisp").innerHTML = result.stockBasicInfo[0]["open"];
-    //alert("finish");
-    //str = GetBasicData("test1");
-    //alert(str);
-    //$ = layui.$;
-    //$("#thisp").html("");
   };
 }
 
@@ -166,14 +154,13 @@ function Init()
   result = GetBasicData("test");
   var iframeElement = document.getElementById("myiframe");
   var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
-  str1 = result.stockBasicInfo[0]["date"];
-  //iframeDoc.getElementById("thisp").innerHTML = str1;
+  iframeDoc.getElementById("thisp").innerHTML = result.stockBasicInfo[0]["date"];
   str2 = ""
   for(var i = 0; i < result.stockBasicInfo.length; i++)
   {
-    str2 += "<tr>"+"<td>"+result.stockBasicInfo[i]["display_name"]+"</td><td>"+result.stockBasicInfo[i]["close"]+"</td><td>"+result.stockBasicInfo[i]["pchg"]+"%</td><td>"+result.stockBasicInfo[i]["bljjResult"]+"</td><td><a href=\"http://www.baidu.com\">op1</a></td>"+"</tr>";
+    color = (result.stockBasicInfo[i]["pchg"].toString().search('-') != -1) ? "style=\"color:blue\"" : "style=\"color:red\"";
+    str2 += `<tr><td>${result.stockBasicInfo[i]["display_name"]}</td><td>${result.stockBasicInfo[i]["close"]}</td><td ${color}>${result.stockBasicInfo[i]["pchg"]}%</td><td>${result.stockBasicInfo[i]["bljjResult"]}</td><td><a href=\"http://www.baidu.com\">op1</a></td></tr>`;
   }
-  
   iframeDoc.getElementById("thistable").innerHTML = str2;
 }
 
