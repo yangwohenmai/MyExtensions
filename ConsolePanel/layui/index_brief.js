@@ -22,7 +22,7 @@ if (refresh) {
     for(var i = 0; i < result.stockBasicInfo.length; i++)
     {
       color = (result.stockBasicInfo[i]["pchg"].toString().search('-') != -1) ? "style=\"color:blue\"" : "style=\"color:red\"";
-      str2 += `<tr><td>${result.stockBasicInfo[i]["display_name"]}</td><td>${result.stockBasicInfo[i]["close"]}</td><td ${color}>${result.stockBasicInfo[i]["pchg"]}%</td><td>${result.stockBasicInfo[i]["bljjResult"]}</td><td><a href=\"http://www.baidu.com\">op1</a></td></tr>`;
+      str2 += `<tr ${color}><td>${result.stockBasicInfo[i]["display_name"]}</td><td>${result.stockBasicInfo[i]["close"]}</td><td>${result.stockBasicInfo[i]["pchg"]}%</td><td>${result.stockBasicInfo[i]["bljjResult"]}</td><td><a href=\"http://www.baidu.com\">op1</a></td></tr>`;
     }
     iframeDoc.getElementById("thistable").innerHTML = str2;
   };
@@ -120,7 +120,7 @@ layui.use(function(){
         element.tabChange('test-handle', '33'); // 切换到：标签3
       }
     });
-  */
+   */
 });
 
 //请求数据
@@ -159,7 +159,7 @@ function Init()
   for(var i = 0; i < result.stockBasicInfo.length; i++)
   {
     color = (result.stockBasicInfo[i]["pchg"].toString().search('-') != -1) ? "style=\"color:blue\"" : "style=\"color:red\"";
-    str2 += `<tr><td>${result.stockBasicInfo[i]["display_name"]}</td><td>${result.stockBasicInfo[i]["close"]}</td><td ${color}>${result.stockBasicInfo[i]["pchg"]}%</td><td>${result.stockBasicInfo[i]["bljjResult"]}</td><td><a href=\"http://www.baidu.com\">op1</a></td></tr>`;
+    str2 += `<tr ${color}><td>${result.stockBasicInfo[i]["display_name"]}</td><td>${result.stockBasicInfo[i]["close"]}</td><td>${result.stockBasicInfo[i]["pchg"]}%</td><td>${result.stockBasicInfo[i]["bljjResult"]}</td><td><a href=\"http://www.baidu.com\">op1</a></td></tr>`;
   }
   iframeDoc.getElementById("thistable").innerHTML = str2;
 }
