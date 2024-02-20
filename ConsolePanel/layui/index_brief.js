@@ -17,7 +17,7 @@ if (refresh) {
     result = GetBasicData("test");
     var iframeElement = document.getElementById("myiframe");
     var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
-    iframeDoc.getElementById("thisp").innerHTML = result.stockBasicInfo[0]["date"];
+    iframeDoc.getElementById("thisp").innerHTML = `${result.stockBasicInfo[0]["date"]} ${result.stockBasicInfo[0]["time"].replace(/(.{2})/g,'$1:').slice(0, -1)}`;
     str2 = ""
     for(var i = 0; i < result.stockBasicInfo.length; i++)
     {
@@ -134,6 +134,7 @@ function GetBasicData(input)
       url: 'http://101.133.226.60:5000/MyExtension/GetJsonData',//后端数据接口
       type: 'GET',//请求类型
       dataType: 'json',//返回数据类型
+      data: { 'stockCodeList': 'sz000001,sz000002,' },
       async: false,
       success: function(res) {
         //setTimeout(alert("sleep"),1000);
@@ -154,7 +155,7 @@ function Init()
   result = GetBasicData("test");
   var iframeElement = document.getElementById("myiframe");
   var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
-  iframeDoc.getElementById("thisp").innerHTML = result.stockBasicInfo[0]["date"];
+  iframeDoc.getElementById("thisp").innerHTML = `${result.stockBasicInfo[0]["date"]} ${result.stockBasicInfo[0]["time"].replace(/(.{2})/g,'$1:').slice(0, -1)}`;
   str2 = ""
   for(var i = 0; i < result.stockBasicInfo.length; i++)
   {
