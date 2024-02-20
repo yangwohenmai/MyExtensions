@@ -2,10 +2,7 @@
 const sendMessageId = document.getElementById("sendmessageid");
 if (sendMessageId) {
   sendMessageId.onclick = function() {
-    alert("123");
-    str = GetBasicData("test");
-    alert(str);
-    str = GetBasicData("test1");
+    str = GetBasicData('null1').msg;
     alert(str);
     };
 }
@@ -14,14 +11,15 @@ if (sendMessageId) {
 const refresh = document.getElementById("refresh");
 if (refresh) {
   refresh.onclick = function() {
-    result = GetBasicData("test");
+    result = GetBasicData('null');
     var iframeElement = document.getElementById("myiframe");
     var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
     iframeDoc.getElementById("thisp").innerHTML = `${result.stockBasicInfo[0]["date"]} ${result.stockBasicInfo[0]["time"].replace(/(.{2})/g,'$1:').slice(0, -1)}`;
     str2 = ""
     for(var i = 0; i < result.stockBasicInfo.length; i++)
     {
-      color = (result.stockBasicInfo[i]["pchg"].toString().search('-') != -1) ? "style=\"color:blue\"" : "style=\"color:red\"";
+      //color = (result.stockBasicInfo[i]["pchg"].toString().search('-') != -1) ? "style=\"color:blue\"" : "style=\"color:red\"";
+      color = (result.stockBasicInfo[i]["bljjResult"].toString().slice(-1) != '↑') ? "style=\"color:blue\"" : "style=\"color:red\"";
       str2 += `<tr ${color}><td>${result.stockBasicInfo[i]["display_name"]}</td><td>${result.stockBasicInfo[i]["close"]}</td><td>${result.stockBasicInfo[i]["pchg"]}%</td><td>${result.stockBasicInfo[i]["bljjResult"]}</td><td><a href=\"http://www.baidu.com\">op1</a></td></tr>`;
     }
     iframeDoc.getElementById("thistable").innerHTML = str2;
@@ -126,23 +124,17 @@ layui.use(function(){
 //请求数据
 function GetBasicData(input)
 {
-  test = "";
-  result = "";
+  result = 'null';
+  stockCodeList = GetLocalStockCodeList('E:\\MyGit\\MyExtension\\ConsolePanel\\layui\\config.json');
   $ = layui.$;
   $.ajax({
       //url: 'https://localhost:44396/MyExtension/GetJsonData',//后端数据接口
       url: 'http://101.133.226.60:5000/MyExtension/GetJsonData',//后端数据接口
       type: 'GET',//请求类型
       dataType: 'json',//返回数据类型
-      data: { 'stockCodeList': 'sz000001,sz000002,' },
+      data: { 'stockCodeList': stockCodeList },
       async: false,
       success: function(res) {
-        //setTimeout(alert("sleep"),1000);
-        //将数据绑定到表格中
-        test = input + ":" + res.msg;
-        //var iframeElement = document.getElementById("myiframe");
-        //var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
-        //iframeDoc.getElementById("thisp").innerHTML = res.stockBasicInfo[0]["open"];
         result = res
       }
   });
@@ -152,21 +144,56 @@ function GetBasicData(input)
 //页面内容初始化
 function Init()
 {
-  result = GetBasicData("test");
+  result = GetBasicData('null');
   var iframeElement = document.getElementById("myiframe");
   var iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
   iframeDoc.getElementById("thisp").innerHTML = `${result.stockBasicInfo[0]["date"]} ${result.stockBasicInfo[0]["time"].replace(/(.{2})/g,'$1:').slice(0, -1)}`;
   str2 = ""
   for(var i = 0; i < result.stockBasicInfo.length; i++)
   {
-    color = (result.stockBasicInfo[i]["pchg"].toString().search('-') != -1) ? "style=\"color:blue\"" : "style=\"color:red\"";
+    //color = (result.stockBasicInfo[i]["pchg"].toString().search('-') != -1) ? "style=\"color:blue\"" : "style=\"color:red\"";
+    color = (result.stockBasicInfo[i]["bljjResult"].toString().slice(-1) != '↑') ? "style=\"color:blue\"" : "style=\"color:red\"";
     str2 += `<tr ${color}><td>${result.stockBasicInfo[i]["display_name"]}</td><td>${result.stockBasicInfo[i]["close"]}</td><td>${result.stockBasicInfo[i]["pchg"]}%</td><td>${result.stockBasicInfo[i]["bljjResult"]}</td><td><a href=\"http://www.baidu.com\">op1</a></td></tr>`;
   }
   iframeDoc.getElementById("thistable").innerHTML = str2;
+}
+
+//读取本地配置文件中的股票代码
+function GetLocalStockCodeList(filePath)
+{
+  //同步
+  //let xhr = new XMLHttpRequest(),
+  //okStatus = document.location.protocol === "file:" ? 0 : 200;
+  //xhr.open('GET', filePath, false);
+  //xhr.overrideMimeType("text/html;charset=utf-8");//默认为utf-8
+  //xhr.send(null);
+  //return xhr.status === okStatus ? xhr.responseText : null;
+
+  stockCodeList = 'null';
+  $ = layui.$;
+  $.getJSON({
+      method:"get",
+      data:"",
+      url:filePath,
+      dataType:"json",  
+      async:false,
+      success:function (data){
+        stockCodeList = data.stockCodeList;
+      },
+      error:function (error){
+        alert(error);
+      }
+  });
+  return stockCodeList;
+
+  //异步
+  //$.get(filePath,function(data){
+  //  alert(`finish ${data}`);//全部读取
+  //  $.each(data.split("\n"),function(i, v) {alert(v);});//多行读取
+  //});
 }
 
 //首次加载
 window.onload = function() {
   Init();
 }
-

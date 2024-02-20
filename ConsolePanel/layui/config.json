@@ -1,0 +1,15 @@
+{
+	"stockCodeList": "sh000001,sz300083,sz002153",
+	"array": [{
+		"id": 10008,
+		"stockCodeList": "sh000001",
+		"sex": "男",
+		"city": "城市-8",
+		"sign": "签名-8",
+		"experience": 951,
+		"logins": 133,
+		"words": 16503371,
+		"classify": "词人",
+		"score": 14
+	}]
+}
