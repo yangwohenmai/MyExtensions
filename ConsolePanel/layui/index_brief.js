@@ -129,7 +129,8 @@ function GetBasicData(input)
   $ = layui.$;
   $.ajax({
       //url: 'https://localhost:44396/MyExtension/GetJsonData?stockCodeList='sh000001',//后端数据接口
-      url: 'http://101.133.226.60:5000/MyExtension/GetJsonData',//后端数据接口
+      //url: 'http://101.133.226.60:5000/MyExtension/GetJsonData',//后端数据接口
+      url: 'http://172.22.251.118:5000/MyExtension/GetJsonData',//后端数据接口
       type: 'GET',//请求类型
       dataType: 'json',//返回数据类型
       data: { 'stockCodeList': stockCodeList },
